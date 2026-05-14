@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sistema web extensionista para organização de atendimentos comunitários." />
+  <title>Conecta Comunidade | Projeto Extensionista</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo principal</a>
+
+  <header class="cabecalho">
+    <nav class="navbar" aria-label="Menu principal">
+      <div class="logo-area">
+        <span class="logo" aria-hidden="true">CC</span>
+        <div>
+          <strong>Conecta Comunidade</strong>
+          <small>Seminários III - PUC Minas</small>
+        </div>
+      </div>
+
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="menuLinks">
+        ☰ <span>Menu</span>
+      </button>
+
+      <ul class="menu-links" id="menuLinks">
+        <li><a href="#inicio">Início</a></li>
+        <li><a href="#sobre">Projeto</a></li>
+        <li><a href="#sistema">Sistema</a></li>
+        <li><a href="#libras">Libras</a></li>
+        <li><a href="#documentacao">Documentação</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="conteudo">
+    <section class="hero" id="inicio" aria-labelledby="titulo-principal">
+      <div class="hero-texto">
+        <p class="etiqueta">Projeto extensionista universitário</p>
+        <h1 id="titulo-principal">Sistema web funcional para apoio a uma comunidade parceira</h1>
+        <p>
+          Plataforma acessível para cadastrar demandas, organizar atendimentos,
+          acompanhar prioridades e facilitar a comunicação entre alunos e comunidade.
+        </p>
+
+        <div class="botoes-hero">
+          <a class="botao primario" href="#sistema">Usar o sistema</a>
+          <button class="botao secundario" id="btnContraste">Ativar alto contraste</button>
+        </div>
+      </div>
+
+      <div class="hero-imagem" role="img" aria-label="Espaço reservado para imagem da comunidade parceira">
+        <div class="placeholder">
+          <strong>Imagem inicial</strong>
+          <span>Substitua por foto da comunidade, banner ou print do sistema</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao" id="sobre" aria-labelledby="titulo-sobre">
+      <div class="secao-cabecalho">
+        <p class="etiqueta">Contexto</p>
+        <h2 id="titulo-sobre">Sobre o projeto</h2>
+      </div>
+
+      <div class="grid-cards">
+        <article class="card">
+          <h3>Comunidade parceira</h3>
+          <p>
+            Associação Comunitária Esperança, grupo fictício usado como modelo.
+            Troque este nome pela comunidade real atendida pelo seu grupo.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>Problema identificado</h3>
+          <p>
+            Falta de uma ferramenta simples para registrar pedidos, acompanhar
+            necessidades e organizar ações sociais.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>Solução proposta</h3>
+          <p>
+            Um sistema web responsivo, acessível e funcional para cadastro,
+            busca, edição e exclusão de demandas comunitárias.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="secao destaque" id="sistema" aria-labelledby="titulo-sistema">
+      <div class="secao-cabecalho">
+        <p class="etiqueta">Sistema funcional</p>
+        <h2 id="titulo-sistema">Cadastro de demandas da comunidade</h2>
+        <p>Os dados são salvos no navegador usando localStorage.</p>
+      </div>
+
+      <div class="painel">
+        <form id="formDemanda" class="formulario" aria-describedby="ajuda-form">
+          <p id="ajuda-form" class="texto-ajuda">
+            Preencha os campos para registrar uma demanda. Campos com * são obrigatórios.
+          </p>
+
+          <input type="hidden" id="demandaId" />
+
+          <div class="campo">
+            <label for="nome">Nome do solicitante *</label>
+            <input type="text" id="nome" name="nome" placeholder="Ex.: Maria Silva" required />
+          </div>
+
+          <div class="campo">
+            <label for="contato">Contato *</label>
+            <input type="text" id="contato" name="contato" placeholder="Telefone, WhatsApp ou e-mail" required />
+          </div>
+
+          <div class="campo">
+            <label for="categoria">Categoria *</label>
+            <select id="categoria" name="categoria" required>
+              <option value="">Selecione</option>
+              <option value="Alimentação">Alimentação</option>
+              <option value="Educação">Educação</option>
+              <option value="Saúde">Saúde</option>
+              <option value="Documentação">Documentação</option>
+              <option value="Tecnologia">Tecnologia</option>
+              <option value="Outro">Outro</option>
+            </select>
+          </div>
+
+          <div class="campo">
+            <label for="prioridade">Prioridade *</label>
+            <select id="prioridade" name="prioridade" required>
+              <option value="">Selecione</option>
+              <option value="Baixa">Baixa</option>
+              <option value="Média">Média</option>
+              <option value="Alta">Alta</option>
+            </select>
+          </div>
+
+          <div class="campo campo-cheio">
+            <label for="descricao">Descrição da demanda *</label>
+            <textarea id="descricao" name="descricao" rows="4" placeholder="Descreva a necessidade da comunidade" required></textarea>
+          </div>
+
+          <div class="acoes-form">
+            <button class="botao primario" type="submit" id="btnSalvar">Salvar demanda</button>
+            <button class="botao secundario" type="button" id="btnLimpar">Limpar formulário</button>
+          </div>
+
+          <p class="mensagem" id="mensagem" role="status" aria-live="polite"></p>
+        </form>
+
+        <aside class="resumo" aria-labelledby="titulo-resumo">
+          <h3 id="titulo-resumo">Resumo</h3>
+          <ul>
+            <li><strong id="totalDemandas">0</strong> demandas cadastradas</li>
+            <li><strong id="totalAltas">0</strong> demandas de alta prioridade</li>
+            <li><strong id="totalCategorias">0</strong> categorias diferentes</li>
+          </ul>
+        </aside>
+      </div>
+
+      <div class="filtros">
+        <div class="campo">
+          <label for="busca">Buscar demanda</label>
+          <input type="search" id="busca" placeholder="Digite nome, categoria ou descrição" />
+        </div>
+
+        <div class="campo">
+          <label for="filtroPrioridade">Filtrar por prioridade</label>
+          <select id="filtroPrioridade">
+            <option value="">Todas</option>
+            <option value="Baixa">Baixa</option>
+            <option value="Média">Média</option>
+            <option value="Alta">Alta</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="lista" id="listaDemandas" aria-live="polite"></div>
+    </section>
+
+    <section class="secao" id="libras" aria-labelledby="titulo-libras">
+      <div class="secao-cabecalho">
+        <p class="etiqueta">Inclusão</p>
+        <h2 id="titulo-libras">Acessibilidade e Libras</h2>
+      </div>
+
+      <div class="painel libras-painel">
+        <div>
+          <p>
+            Este projeto prevê suporte à comunidade surda por meio de textos claros,
+            recursos visuais, área para vídeo em Libras e possibilidade de integração
+            com ferramentas como VLibras.
+          </p>
+          <button class="botao primario" id="btnInfoLibras">Ver informações sobre Libras</button>
+          <p class="mensagem" id="infoLibras" role="status" aria-live="polite"></p>
+        </div>
+
+        <div class="video-placeholder" aria-label="Espaço reservado para vídeo em Libras">
+          <strong>Vídeo em Libras</strong>
+          <span>Insira aqui um vídeo explicativo ou incorpore um link acessível.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao" id="documentacao" aria-labelledby="titulo-documentacao">
+      <div class="secao-cabecalho">
+        <p class="etiqueta">Organização</p>
+        <h2 id="titulo-documentacao">Documentação e evidências</h2>
+      </div>
+
+      <div class="grid-cards">
+        <article class="card">
+          <h3>Diário de bordo</h3>
+          <p>Registre data, atividade, participantes, decisões, dificuldades, soluções e próximos passos.</p>
+        </article>
+
+        <article class="card">
+          <h3>Evidências</h3>
+          <p>Inclua fotos, prints das conversas, prints do sistema e registros da entrega presencial.</p>
+        </article>
+
+        <article class="card">
+          <h3>Entrega</h3>
+          <p>Apresente o sistema funcionando em computador e celular, colete feedback e registre a validação.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <p>Projeto Extensionista - Seminários III - PUC Minas</p>
+    <p>Desenvolvido com HTML, CSS e JavaScript.</p>
+  </footer>
+
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+    if (window.VLibras) {
+      new window.VLibras.Widget("https://vlibras.gov.br/app");
+    }
+  </script>
+</body>
+</html>
